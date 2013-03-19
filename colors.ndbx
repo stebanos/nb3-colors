@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ndbx type="file" uuid="20db361b-6aa5-4361-ac3d-217e20891236">
+    <link href="clojure:colors.clj" rel="functions"/>
+    <node name="root" prototype="core.network" renderedChild="saturate">
+        <node function="nodebox-colors/darken" name="darken" position="1.00,1.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+            <port name="step" range="value" type="float" value="0.1" widget="float"/>
+        </node>
+        <node function="nodebox-colors/desaturate" name="desaturate" position="1.00,2.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+            <port name="step" range="value" type="float" value="0.1" widget="float"/>
+        </node>
+        <node function="nodebox-colors/lighten" name="lighten" position="4.00,1.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+            <port name="step" range="value" type="float" value="0.1" widget="float"/>
+        </node>
+        <node function="nodebox-colors/saturate" name="saturate" position="4.00,2.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+            <port name="step" range="value" type="float" value="0.1" widget="float"/>
+        </node>
+    </node>
+</ndbx>
