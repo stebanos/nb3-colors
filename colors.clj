@@ -33,32 +33,18 @@
     (instance? RGBA c) (to-nodebox-rgba c)
     (instance? HSBA c) (to-nodebox-hsba c)))
 
-;(defn adjust_hsb_param
-;  "Manipulate a HSBA parameter"
-;  ([color param step]
-;    (let [c (to-hsba color)]
-;    (to-nodebox-color (assoc c param (+ (param c) step))))))
-
-(defn darken
-  "Darken a color"
-  ([color step]
+(defn adjust_hsb_param
+  "Manipulate a HSBA parameter"
+  ([color param step]
     (let [c (to-hsba color)]
-    (to-nodebox-color (assoc c :brightness (- (:brightness c) step))))))
+    (to-nodebox-color (apply assoc c [param (+ (param c) step)])))))
 
-(defn lighten
-  "Lighten a color"
+(defn brightness
+  "Darken or lighten a color"
   ([color step]
-    (let [c (to-hsba color)]
-    (to-nodebox-color (assoc c :brightness (+ (:brightness c) step))))))
+   (adjust_hsb_param color :brightness (/ step 100.0))))
 
-(defn desaturate
-  "Desaturate a color"
+(defn saturation
+  "(De)saturate a color"
   ([color step]
-    (let [c (to-hsba color)]
-    (to-nodebox-color (assoc c :saturation (- (:saturation c) step))))))
-
-(defn saturate
-  "Saturate a color"
-  ([color step]
-    (let [c (to-hsba color)]
-    (to-nodebox-color (assoc c :saturation (+ (:saturation c) step))))))
+    (adjust_hsb_param color :saturation (/ step 100.0))))
