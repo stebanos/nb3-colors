@@ -8,7 +8,7 @@
   "Convert a NodeBox color to rgba components."
   [c]
   (cond 
-    (instance? Color c) (HSBA. (.getRed c) (.getGreen c) (.getBlue c) (.getAlpha c))))
+    (instance? Color c) (RGBA. (.getRed c) (.getGreen c) (.getBlue c) (.getAlpha c))))
 
 (defn to-hsba
   "Convert a NodeBox color to hsba components."
@@ -103,3 +103,8 @@
         a (mod (+ (find-angle-artistic wheel h) angle) 360)
         new-h (mod (find-hue-artistic wheel a) 360)]
     (to-nodebox-color (apply assoc c [:hue (/ new-h 360.0)])))))
+
+(defn invert-color
+    [color]
+    (let [c (to-rgba color)]
+    (to-nodebox-color (RGBA. (- 1.0 (:red c)) (- 1.0 (:green c)) (- 1.0 (:blue c)) (:alpha c)))))

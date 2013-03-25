@@ -18,5 +18,8 @@
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
             <port name="angle" range="value" type="float" value="180.0" widget="float"/>
         </node>
+        <node function="nodebox-colors/invert-color" name="invert_color" position="1.00,5.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+        </node>
     </node>
 </ndbx>
