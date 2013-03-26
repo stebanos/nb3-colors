@@ -135,3 +135,11 @@
         b (+ (* (:blue c1) (- 1 f)) (* (:blue c2) f))
         a (+ (* (:alpha c1) (- 1 f)) (* (:alpha c2) f))]
     (to-nodebox-color (RGBA. r g b a))))
+
+(defn color-to-hex
+  [color]
+  (.toString color))
+ 
+ (defn hex-to-color
+   [hex-str]
+   (Color/valueOf hex-str))

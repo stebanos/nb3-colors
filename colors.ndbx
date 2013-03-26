@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ndbx type="file" uuid="20db361b-6aa5-4361-ac3d-217e20891236">
-    <link href="clojure:colors.clj" rel="functions"/>
+    <link href="clojure:src/nodebox/colors/core.clj" rel="functions"/>
     <node name="root" prototype="core.network" renderedChild="brightness">
         <node function="nodebox-colors/brightness" name="brightness" outputType="color" position="1.00,1.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
@@ -34,6 +34,12 @@
             <port name="color1" range="value" type="color" value="#ff0000ff" widget="color"/>
             <port name="color2" range="value" type="color" value="#00ff00ff" widget="color"/>
             <port name="factor" range="value" type="float" value="50.0" min="0.0" max="100.0" widget="float"/>
+        </node>
+        <node function="nodebox-colors/color-to-hex" name="color_to_hex" outputType="string" position="4.00,1.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+        </node>
+        <node function="nodebox-colors/hex-to-color" name="hex_to_color" outputType="color" position="4.00,2.00">
+            <port name="string" range="value" type="string" value="#000000ff" widget="string"/>
         </node>
     </node>
 </ndbx>
