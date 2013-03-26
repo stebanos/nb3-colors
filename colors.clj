@@ -1,5 +1,6 @@
 (ns nodebox-colors
-  (:import [nodebox.graphics Color]))
+  (:import [nodebox.graphics Color])
+  (:import [nodebox.util MathUtils]))
 
 (defrecord RGBA [red green blue alpha])
 (defrecord HSBA [hue saturation brightness alpha])
@@ -102,9 +103,23 @@
         angle (mod ang 360)
         a (mod (+ (find-angle-artistic wheel h) angle) 360)
         new-h (mod (find-hue-artistic wheel a) 360)]
-    (to-nodebox-color (apply assoc c [:hue (/ new-h 360.0)])))))
+    (to-nodebox-color (apply assoc c [:hue (/ new-h 360.0)]) ))))
 
 (defn invert-color
     [color]
     (let [c (to-rgba color)]
     (to-nodebox-color (RGBA. (- 1.0 (:red c)) (- 1.0 (:green c)) (- 1.0 (:blue c)) (:alpha c)))))
+
+(defn complement
+  [color]
+  (rotate-ryb color 180))
+
+(defn analog
+  [color angle d seed]
+  (let [rnd (MathUtils/randomFromSeed seed)
+        confine-range (fn [number r] (- (* number (* 2 r)) r))
+        rotated-color (rotate-ryb color (confine-range (.nextDouble rnd) angle))
+        resulting-color (to-hsba rotated-color) 
+        s (* (:saturation resulting-color) (- 1 (confine-range (.nextDouble rnd) d)))
+        b (* (:brightness resulting-color) (- 1 (confine-range (.nextDouble rnd) d)))]
+    (to-nodebox-color (apply assoc resulting-color [:saturation s :brightness b]))))

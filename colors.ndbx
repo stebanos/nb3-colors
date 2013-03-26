@@ -2,24 +2,33 @@
 <ndbx type="file" uuid="20db361b-6aa5-4361-ac3d-217e20891236">
     <link href="clojure:colors.clj" rel="functions"/>
     <node name="root" prototype="core.network" renderedChild="brightness">
-        <node function="nodebox-colors/brightness" name="brightness" position="1.00,1.00">
+        <node function="nodebox-colors/brightness" name="brightness" outputType="color" position="1.00,1.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
             <port name="step" range="value" type="float" value="10.0" widget="float"/>
         </node>
-        <node function="nodebox-colors/saturation" name="saturation" position="1.00,2.00">
+        <node function="nodebox-colors/saturation" name="saturation" outputType="color" position="1.00,2.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
             <port name="step" range="value" type="float" value="10.0" widget="float"/>
         </node>
-        <node function="nodebox-colors/rotate-rgb" name="rotate_rgb" position="1.00,3.00">
+        <node function="nodebox-colors/rotate-rgb" name="rotate_rgb" outputType="color" position="1.00,3.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
             <port name="angle" range="value" type="float" value="180.0" widget="float"/>
         </node>
-        <node function="nodebox-colors/rotate-ryb" name="rotate_ryb" position="1.00,4.00">
+        <node function="nodebox-colors/rotate-ryb" name="rotate_ryb" outputType="color" position="1.00,4.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
             <port name="angle" range="value" type="float" value="180.0" widget="float"/>
         </node>
-        <node function="nodebox-colors/invert-color" name="invert_color" position="1.00,5.00">
+        <node function="nodebox-colors/invert-color" name="invert_color" outputType="color" position="1.00,5.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+        </node>
+        <node function="nodebox-colors/complement" name="complement" outputType="color" position="1.00,6.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+        </node>
+        <node function="nodebox-colors/analog" name="analog" outputType="float" position="1.00,7.00">
+            <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
+            <port name="angle" range="value" type="float" value="20.0" widget="float"/>
+            <port name="d" range="value" type="float" value="0.1" widget="float"/>
+            <port name="seed" range="value" type="int" value="0" widget="int"/>
         </node>
     </node>
 </ndbx>
