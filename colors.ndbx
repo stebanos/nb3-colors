@@ -24,11 +24,16 @@
         <node function="nodebox-colors/complement" name="complement" outputType="color" position="1.00,6.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
         </node>
-        <node function="nodebox-colors/analog" name="analog" outputType="float" position="1.00,7.00">
+        <node function="nodebox-colors/analog" name="analog" outputType="color" position="1.00,7.00">
             <port name="color" range="value" type="color" value="#000000ff" widget="color"/>
             <port name="angle" range="value" type="float" value="20.0" widget="float"/>
-            <port name="d" range="value" type="float" value="0.1" widget="float"/>
+            <port name="sbVariation" range="value" type="float" value="10.0" min="0.0" max="100.0" widget="float"/>
             <port name="seed" range="value" type="int" value="0" widget="int"/>
+        </node>
+        <node function="nodebox-colors/blend" name="blend" outputType="color" position="1.00,8.00">
+            <port name="color1" range="value" type="color" value="#ff0000ff" widget="color"/>
+            <port name="color2" range="value" type="color" value="#00ff00ff" widget="color"/>
+            <port name="factor" range="value" type="float" value="50.0" min="0.0" max="100.0" widget="float"/>
         </node>
     </node>
 </ndbx>

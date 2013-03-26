@@ -115,11 +115,23 @@
   (rotate-ryb color 180))
 
 (defn analog
-  [color angle d seed]
+  [color angle sb-var seed]
   (let [rnd (MathUtils/randomFromSeed seed)
+        d (/ sb-var 100.0)
         confine-range (fn [number r] (- (* number (* 2 r)) r))
         rotated-color (rotate-ryb color (confine-range (.nextDouble rnd) angle))
         resulting-color (to-hsba rotated-color) 
         s (* (:saturation resulting-color) (- 1 (confine-range (.nextDouble rnd) d)))
         b (* (:brightness resulting-color) (- 1 (confine-range (.nextDouble rnd) d)))]
     (to-nodebox-color (apply assoc resulting-color [:saturation s :brightness b]))))
+
+(defn blend
+  [color1 color2 factor]
+  (let [c1 (to-rgba color1)
+        c2 (to-rgba color2)
+        f (/ factor 100.0)
+        r (+ (* (:red c1) (- 1 f)) (* (:red c2) f))
+        g (+ (* (:green c1) (- 1 f)) (* (:green c2) f))
+        b (+ (* (:blue c1) (- 1 f)) (* (:blue c2) f))
+        a (+ (* (:alpha c1) (- 1 f)) (* (:alpha c2) f))]
+    (to-nodebox-color (RGBA. r g b a))))
